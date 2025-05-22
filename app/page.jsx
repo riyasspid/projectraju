@@ -9,7 +9,7 @@ export default function page() {
   const [raju, setRaju] = useState("");
   const [hidethebutton, setHideTheButton] = useState("");
   const [changepage, setChangepage] = useState("landpage");
-  const [realnameo, setRealnameo] =useState("");
+  const [realnameo, setRealnameo] =useState();
   const [unhidethetext, setUnhidethetext] = useState("hidden");
   const handleInputValue = (e) => {
     setRealnameo(e.target.value)
