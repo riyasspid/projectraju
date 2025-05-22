@@ -24,19 +24,19 @@ export default function page() {
       setRaju("");
     }
     else if (riyas <= 50) {
-      setHeart("💖");
+      setHeart("😒👍");
       setRaju("/--");
     }
      else if (riyas <=70) {
-      setHeart("💖💖");
+      setHeart("😎🙌");
       setRaju("/--");
     }
     else if (riyas <=89) {
-      setHeart("💖💖💖");
+      setHeart("💖😍💖");
       setRaju("/--");
     }
     else if (riyas > 89)  {
-      setHeart("😱😱😱");
+      setHeart("🕺😱🕺");
       setRaju("/raju.mp4");
 
     }
