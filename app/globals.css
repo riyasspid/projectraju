@@ -19,6 +19,12 @@
   }
 }
 
+.cc{
+  justify-items: center;
+  place-content: center;
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
