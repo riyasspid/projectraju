@@ -1,20 +1,19 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React from "react";
 import { useState } from "react";
 
 export default function page() {
   const [count, setCount] = useState(1);
-  const [heart, setHeart] = useState("");
-  const [raju, setRaju] = useState("");
-  const [hidethebutton, setHideTheButton] = useState("");
+  const [heart, setHeart] = useState("..");
+  const [raju, setRaju] = useState("..");
+  const [hidethebutton, setHideTheButton] = useState("..");
   const [changepage, setChangepage] = useState("landpage");
   const [realnameo, setRealnameo] =useState();
   const [unhidethetext, setUnhidethetext] = useState("hidden");
+  const [realage, setRealage] = useState();
   const handleInputValue = (e) => {
-    setRealnameo(e.target.value)
+    setRealnameo(e.target.value);
   }
-  const handle = () => {
+    const handle = async () => {
     const riyas = (Math.random() * 100);
     setCount(Math.round(riyas));
     setHideTheButton("hidden");
@@ -40,6 +39,15 @@ export default function page() {
       setRaju("/raju.mp4");
 
     }
+    const res = await fetch('/api/save-username',{ 
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name: realnameo, age: realage})
+    });
+    const data = await res.json();
+    console.log(data);
   };
   const cpage = () => {
     if(realnameo == null){
@@ -48,11 +56,12 @@ export default function page() {
     else{
       setChangepage("onpage");
     }
+
   };
   if (changepage == "onpage" ) {return (
     <div className="h-screen w-full flex flex-col items-center justify-center gap-6">
       <div className={`${hidethebutton} flex flex-col justify-items-center gap-6`}>
-      <div>Click to know your luck in relationship {realnameo}!</div>
+      <div>Click to know your luck in relationship {realnameo}! {realage}</div>
       <button onClick={handle} className="bg-black/100 text-[#ededed] justify-center p-2 rounded transform hover:bg-black/50 transition-transform duration-300">Click Me</button>
       </div>
       <div className={`${unhidethetext} text-lg md:text-2xl font-bold text-center flex justify-items-center`}> 
@@ -69,9 +78,9 @@ export default function page() {
     return(
       <div className="">
         <form className="h-[100vh] grid grid-col-1 gap-6 cc my-auto">
-        <input className="bg-black/10 rounded p-1" type="text" onChange={handleInputValue} placeholder="Name"/>
+        <input id='1' className="bg-black/10 rounded p-1" type="text" onChange={handleInputValue} placeholder="Name"/>
         <button type="submit" className="bg-black/100 text-[#ededed] justify-center p-2 rounded transform hover:bg-black/50 transition-transform duration-300" onClick={cpage}>Check My percentage</button>
-        <div>*Enter your name to find your relationship percentage</div>
+        <div className="w-full text-center md:text-end ">*Enter your name to find your relationship percentage</div>
         </form>
       </div>
     );
